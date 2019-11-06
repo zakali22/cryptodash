@@ -48,6 +48,8 @@ export class Provider extends Component {
 				favouriteCoins
 			})
 		}
+
+		console.log(coin)
 	}
 
 	isInFavourites = (coin) => {
