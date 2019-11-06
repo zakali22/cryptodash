@@ -74,6 +74,7 @@ export class Provider extends Component {
 			this.setState({
 				favouriteCoins
 			})
+			console.log(coin)
 			/* Another way to remove an element from an array */
 
 			// favouriteCoins = favouriteCoins.filter((el) => {
