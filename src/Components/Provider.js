@@ -17,6 +17,7 @@ export class Provider extends Component {
 			removeFavourites: this.removeFavourites,
 			isInFavourites: this.isInFavourites,
 			...this.initialLoad(),
+			isLight: false
 		}
 	}
 	
