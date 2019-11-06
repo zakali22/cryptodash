@@ -8,6 +8,7 @@ const disabledTile = {
 }
 
 const Coin = ({coin, type, addFavourites, removeFavourites, isInFavourites}) => {
+	console.log(coin)
 	let typeClass = type ? `coins__coinsgrid--coin__${type}` : "c";
 	let onClickFunction = type ? removeFavourites : addFavourites;
 	let applyDisabledStyling = !type ? (isInFavourites(coin.Name) ? disabledTile : null) : null;
