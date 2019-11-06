@@ -91,6 +91,8 @@ export class Provider extends Component {
 		localStorage.setItem('cryptodash', JSON.stringify({
 			favouriteCoins: this.state.favouriteCoins
 		}))
+
+		console.log(this.state.favouriteCoins)
 	}
 
 	fetchCoins = async () => {
