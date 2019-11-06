@@ -58,6 +58,8 @@ export class Provider extends Component {
 			return el === coin
 		})
 
+		console.log(coin)
+
 		if(coinMatch !== -1) return true;
 
 		return false;
