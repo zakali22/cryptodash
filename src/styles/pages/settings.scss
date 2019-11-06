@@ -1,0 +1,9 @@
+.settings {
+	&__button {
+		color: $lightGreenColor;
+		border-color: $lightGreenColor;
+		text-shadow: 0px 0px 20px $lightGreenColor;
+		margin-top: 2rem;
+		justify-self: center;
+	}
+}

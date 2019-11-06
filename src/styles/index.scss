@@ -1,0 +1,14 @@
+// Variables
+@import "./variables";
+
+// Overall stylings
+@import "./base";
+
+// Component stylings
+@import "./components/header";
+@import "./components/button";
+@import "./components/coins";
+
+// Page stylings
+@import "./pages/layout";
+@import "./pages/settings";
