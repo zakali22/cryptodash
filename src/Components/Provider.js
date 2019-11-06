@@ -34,6 +34,8 @@ export class Provider extends Component {
 				firstVisit: true
 			}
 		}
+
+		console.log(this.state)
 		return {
 			favouriteCoins: cryptoDashData.favouriteCoins
 		}
