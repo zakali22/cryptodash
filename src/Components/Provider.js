@@ -99,6 +99,8 @@ export class Provider extends Component {
 		this.setState({
 			coinsList: response.Data
 		})
+
+		console.log(this.state.coinsList)
 	}
 
 	componentDidMount(){
