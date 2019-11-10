@@ -41,3 +41,24 @@ h5, h6, .h5, .h6 {
 p {
 	font-size: 1.6rem;
 }
+
+label {
+	font-size: 3rem;
+}
+
+input {
+	border: 2px solid transparent;
+	background: $tileGridItemColor;
+	border-radius: 2rem;
+	padding: 1rem;
+	color: white;
+
+	::-webkit-input-placeholder { 
+	  color: white	
+	}
+
+	&:focus {
+		outline: none;
+		border: 2px solid white;
+	}
+}
