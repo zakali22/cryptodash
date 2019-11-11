@@ -6,7 +6,7 @@ const favTile = {
 	"pointerEvents": 'none'
 }
 
-const CoinPrice = ({coin, type, index, currentFav}) => {
+const CoinPrice = ({coin, type, index, currentFav, updateCurrentFav}) => {
 	let price = coin.USD.PRICE;
 	price = price >=1 ? price.toFixed(2) : price.toFixed(5);
 	return (

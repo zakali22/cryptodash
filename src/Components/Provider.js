@@ -20,6 +20,8 @@ export class Provider extends Component {
 			filteredCoins: null,
 			setFilteredCoins: this.setFilteredCoins,
 			pricesList: null,
+			updateCurrentFav: this.updateCurrentFav,
+			getCurrentFavCoinDetails: this.getCurrentFavCoinDetails,
 			...this.initialLoad(),
 		}
 	}
@@ -38,11 +40,11 @@ export class Provider extends Component {
 				firstVisit: true
 			}
 		}
-		console.log(cryptoDashData)
 		return {
 			favouriteCoins: cryptoDashData.favouriteCoins,
 			pricesList: cryptoDashData.pricesList,
-			currentFav: cryptoDashData.currentFav
+			currentFav: cryptoDashData.currentFav,
+			coinsList: cryptoDashData.coinsList
 		}
 	}
 
@@ -56,7 +58,6 @@ export class Provider extends Component {
 			})
 		}
 
-		console.log(coin)
 	}
 
 	isInFavourites = (coin) => {
@@ -81,7 +82,6 @@ export class Provider extends Component {
 			this.setState({
 				favouriteCoins
 			}, () => {
-				console.log(this.state.favouriteCoins)
 			})
 			/* Another way to remove an element from an array */
 
@@ -99,6 +99,7 @@ export class Provider extends Component {
 		}, () => {
 			this.coinPriceFetch().then(response => {
 				localStorage.setItem('cryptodash', JSON.stringify({
+					coinsList: this.state.coinsList,
 					favouriteCoins: this.state.favouriteCoins,
 					currentFav: this.state.currentFav,
 					pricesList: this.state.pricesList
@@ -107,10 +108,47 @@ export class Provider extends Component {
 		})
 	}
 
+	updateCurrentFav = (index) => {
+		this.setState({
+			currentFav: index
+		}, () => {
+			localStorage.setItem('cryptodash', JSON.stringify({
+				coinsList: this.state.coinsList,
+				favouriteCoins: this.state.favouriteCoins,
+				currentFav: this.state.currentFav,
+				pricesList: this.state.pricesList
+			}))
+		})
+	}
+
+	getCurrentFavCoinDetails = () => {
+		if(this.state.pricesList){
+			let pricesList = [...this.state.pricesList];
+			let coinsList = this.state.coinsList;
+			let favCoinSelected = pricesList[this.state.currentFav];
+			let findFavInCoinsList = null;
+			for(let coin in coinsList){
+				if(coinsList[coin]["Symbol"] === favCoinSelected['symbol']){
+					findFavInCoinsList = coinsList[coin]
+				}
+			}
+
+			return findFavInCoinsList
+		}
+	}
+
 	fetchCoins = async () => {
 		const response = await crypto.coinList()
 		this.setState({
 			coinsList: response.Data
+		}, () => {
+			localStorage.setItem('cryptodash', JSON.stringify({
+				coinsList: this.state.coinsList,
+				favouriteCoins: this.state.favouriteCoins,
+				currentFav: this.state.currentFav,
+				pricesList: this.state.pricesList
+
+			}))
 		})
 	}
 
@@ -124,17 +162,17 @@ export class Provider extends Component {
 	fetchPrices = async () => {
 		if(this.state.firstVisit) return;
 		let priceList = [];
+		
 		if(this.state.favouriteCoins.length){
 			let priceOfCoin = await crypto.priceFull(this.state.favouriteCoins, ['USD'])
-			// console.log(priceOfCoin)
 			for(let coin in priceOfCoin){
 				priceList.push({
 					symbol: coin, 
 					...priceOfCoin[coin]
 				})
 			}
+			
 		}
-		console.log(priceList)
 		return priceList
 		
 	}
