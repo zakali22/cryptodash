@@ -139,8 +139,18 @@ export class Provider extends Component {
 
 	fetchCoins = async () => {
 		const response = await crypto.coinList()
+		let circulatingCoins = {};
+		for(let coin in response.Data){
+			let coinData = response.Data[coin];
+			if(coinData.IsTrading && coinData.TotalCoinsMined && coinData.TotalCoinsMined > 0){
+				circulatingCoins[coin] = coinData;
+			}
+		}
+
+		console.log(circulatingCoins)
+
 		this.setState({
-			coinsList: response.Data
+			coinsList: circulatingCoins
 		}, () => {
 			localStorage.setItem('cryptodash', JSON.stringify({
 				coinsList: this.state.coinsList,
