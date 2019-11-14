@@ -165,6 +165,8 @@ export class Provider extends Component {
 		
 		if(this.state.favouriteCoins.length){
 			let priceOfCoin = await crypto.priceFull(this.state.favouriteCoins, ['USD'])
+			console.log(this.state.favouriteCoins)
+			console.log(priceOfCoin)
 			for(let coin in priceOfCoin){
 				priceList.push({
 					symbol: coin, 

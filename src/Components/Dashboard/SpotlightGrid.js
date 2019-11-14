@@ -3,6 +3,7 @@ import {Context} from "../Provider"
 import {BounceLoader} from "react-spinners"
 import CoinImage from "../CoinGrid/CoinImage"
 import {css} from 'styled-components'
+import Chart from "./Chart"
 
 const override = css`
 	display: block;
@@ -21,7 +22,6 @@ const SpotlightGrid = () => {
 		<Context.Consumer>
 		{(({getCurrentFavCoinDetails}) => {
 			let coinSpotlight = getCurrentFavCoinDetails();
-			console.log(coinSpotlight)
 			{return coinSpotlight ? 
 				(
 					<div className="dashboard__grid">
@@ -29,7 +29,7 @@ const SpotlightGrid = () => {
 							<p>{coinSpotlight.Name}</p>
 							<CoinImage image={coinSpotlight.ImageUrl} symbol={coinSpotlight.Symbol} customStyling={customStyling} />
 						</div>
-						<p>Chart</p>
+						<Chart />
 					</div>
 				)
 				: <BounceLoader loading={true} size={70} color={'#123abc'} css={override} />}
