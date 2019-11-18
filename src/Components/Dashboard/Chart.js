@@ -9,8 +9,9 @@ ReactHighCharts.Highcharts.setOptions(HighchartTheme)
 const Chart = () => {
 	return (
 		<Context.Consumer>
-			{() => {
-				return <ReactHighCharts config={highchartconfig()}/>
+			{({historical}) => {
+				console.log(historical)
+				return <ReactHighCharts config={highchartconfig(historical)}/>
 
 			}}
 		</Context.Consumer>

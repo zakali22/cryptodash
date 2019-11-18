@@ -3,18 +3,18 @@
 		display: flex;
 		& > *:first-child {
 			flex: 0;
+			box-shadow: 0px 0px 4px 1px $boxShadowBlueColor;
 			margin-right: 2rem;
 		}
 		& > *:last-child {
-			flex: 1;
+			flex: 1 1 auto;
 		}
 
 		& > * {
-			background: $tileGridItemColor;
-			box-shadow: 0px 0px 4px 1px $boxShadowBlueColor;
 			padding: 2rem;
 			cursor: pointer;
 			font-size: 2rem;
+			background: $tileGridItemColor;
 		}
 
 		@media(max-width: 1011px){
@@ -23,7 +23,8 @@
 				margin-bottom: 2rem;
 			}
 			& > *:first-child {
-				margin-right: 0			}
+				margin-right: 0			
+			}
 		}
 	}
 	&__spotlight-coin {
@@ -35,4 +36,14 @@
 			margin-bottom: 2rem;
 		}
 	}	
+	&__chart {
+		position: relative;
+    	&--inner {
+    		position: absolute;
+    		top: 0;
+    		left: 0;
+    		width: 100%; 
+    		height: 100%;
+    	}
+	}
 }

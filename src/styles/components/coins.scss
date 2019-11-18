@@ -4,11 +4,11 @@
 		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 		grid-gap: 3rem;
 		margin: 2.5rem 0;
-		&.price-grid {
-			@media(min-width: 1200px){
-				grid-template-columns: repeat(5, 1fr);
-			}
-		}
+		// &.price-grid {
+		// 	@media(min-width: 1200px){
+		// 		grid-template-columns: repeat(5, 1fr);
+		// 	}
+		// }
 		&--coin {
 			display: flex;
 			flex-direction: column;
@@ -25,11 +25,12 @@
 				@media(min-width: 1200px){
 					flex-direction: row;
 					align-items: center;
+					padding: 1rem;
+    				padding-right: 2.5rem;
 					.coins__coinsgrid--coin__header {
 						display: flex;
-						justify-content: space-between;
 						flex: 1 0 auto;
-						margin-right: 20px;
+						margin-right: 10px;
 						margin-bottom: 0;
 
 						& > *:first-child {

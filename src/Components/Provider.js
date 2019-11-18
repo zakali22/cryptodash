@@ -1,5 +1,10 @@
 import React, {Component} from "react"
 import crypto from 'cryptocompare'
+import moment from 'moment'
+
+
+const TIMEUNIT = 10;
+crypto.setApiKey('2a1cb16375540529ccd37a41d1374ecc415e296a3ae667c83474034d2c8f636f')
 
 // Export Context and Provider
 export const Context = React.createContext();
@@ -162,6 +167,36 @@ export class Provider extends Component {
 		})
 	}
 
+	fetchHistorical = async () => {
+		let result = await this.coinFetchHistorical();
+		let histSeries = [{
+			name: this.getCurrentFavCoinDetails().Name,
+			data: result.map((ticker, index) => [
+				moment().subtract({months: TIMEUNIT-index}).valueOf(),
+				ticker.USD
+			])
+		}]
+
+		console.log(result)
+		console.log(histSeries[0])
+
+		this.setState({
+			historical: histSeries
+		})
+	}
+
+
+	coinFetchHistorical = () => {
+		let promises = [];
+		let currSymbol = this.getCurrentFavCoinDetails().Symbol;
+		for(let i=TIMEUNIT; i>0; i--){
+			let data = crypto.priceHistorical(currSymbol, ['USD'], moment().subtract({months: i}).toDate())
+			promises.push(data)
+		}
+
+		return Promise.all(promises)
+	}
+
 	coinPriceFetch = async () => {
 		let pricesList = await this.fetchPrices();
 		// pricesList = pricesList.filter(price => Object.keys(price).length);
@@ -199,6 +234,7 @@ export class Provider extends Component {
 	componentDidMount(){
 		this.fetchCoins();
 		this.fetchPrices();
+		this.fetchHistorical();
 	}
 
 	render(){

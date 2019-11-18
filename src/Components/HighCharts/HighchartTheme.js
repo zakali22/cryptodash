@@ -117,6 +117,9 @@ export default {
             }
         }
     },
+    credits: {
+        enabled: false
+    },
     // scroll charts
     rangeSelector: {
         buttonTheme: {
