@@ -1,12 +1,15 @@
 import React from "react";
 import CoinListings from "../CoinGrid/CoinListings"
+import Loader from "../Layout/Loader"
+import PriceGrid from "./PriceGrid"
+import SpotlightGrid from "./SpotlightGrid"
 
-const Dashboard = () => {
+const Dashboard = ({page}) => {
 	return (
-		<>
-		<h1 className="heading">Dashboard</h1>
-		<CoinListings />
-		</>
+		<Loader page={page}>
+			<PriceGrid />
+			<SpotlightGrid />
+		</Loader>
 	)
 }
 

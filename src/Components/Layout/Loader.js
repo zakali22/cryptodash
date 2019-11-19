@@ -12,12 +12,23 @@ const override = css`
 const Loader = (props) => {
 	return (
 		<Context.Consumer>
-			{(({coinsList}) => {
-					return (
-						<>
-							{coinsList ? props.children : <BounceLoader loading={true} size={70} color={'#123abc'} css={override} />}
-						</>
-					)
+			{(({coinsList, pricesList, firstVisit, favouriteCoins}) => {
+					if(props.page === "Settings"){
+						if(coinsList){
+							return props.children
+						} else {
+							return <BounceLoader loading={true} size={70} color={'#123abc'} css={override} />
+						}
+					}
+
+					if(props.page === "Dashboard"){
+						if(!favouriteCoins.length) return <p className="h2">You don't have any favourite coins. Please go to settings and choose favourites</p>
+						if(pricesList && !firstVisit){
+							return props.children
+						} else {
+							return <p>Loading prices</p>
+						}
+					}
 				}
 			)}
 		</Context.Consumer>

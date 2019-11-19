@@ -13,7 +13,7 @@ const Coin = ({coin, type, addFavourites, removeFavourites, isInFavourites}) => 
 	let applyDisabledStyling = !type ? (isInFavourites(coin.Name) ? disabledTile : null) : null;
 	return (
 		<div className={`coins__coinsgrid--coin ${typeClass}`} onClick={e => onClickFunction(coin.Name)} style={applyDisabledStyling}>
-			<CoinHeader name={coin.CoinName} symbol={coin["Symbol"]} favouriteType={type ? true : false}/>
+			<CoinHeader name={coin.Name} symbol={coin["Symbol"]} favouriteType={type ? true : false}/>
 			<CoinImage image={coin.ImageUrl} symbol={coin.Symbol}/>
 		</div>
 	)

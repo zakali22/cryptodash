@@ -11,9 +11,9 @@ class App extends Component {
 		console.log(page)
 		switch(page){
 			case 'Settings':
-				return <Settings />;
+				return <Settings page={page}/>;
 			case 'Dashboard':
-				return <Dashboard />;
+				return <Dashboard page={page}/>;
 			default: 
 				break;
 		}
@@ -23,14 +23,12 @@ class App extends Component {
 		return (
 			<Provider>
 				<Layout>
-					<Loader>
-						<Context.Consumer>
-							{((value) => {
-								return this.pageToRender(value.page)
-								}
-							)}
-						</Context.Consumer>
-					</Loader>
+					<Context.Consumer>
+						{((value) => {
+							return this.pageToRender(value.page)
+							}
+						)}
+					</Context.Consumer>
 				</Layout>
 			</Provider>
 		)
