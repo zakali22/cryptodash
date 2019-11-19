@@ -100,9 +100,12 @@ export class Provider extends Component {
 		this.setState({
 			page: 'Dashboard',
 			firstVisit: false,
-			currentFav: 0
+			currentFav: 0, 
+			historical: null, 
+			pricesList: null
 		}, () => {
 			this.coinPriceFetch().then(response => {
+				this.fetchHistorical();
 				localStorage.setItem('cryptodash', JSON.stringify({
 					coinsList: this.state.coinsList,
 					favouriteCoins: this.state.favouriteCoins,
@@ -115,8 +118,10 @@ export class Provider extends Component {
 
 	updateCurrentFav = (index) => {
 		this.setState({
-			currentFav: index
+			currentFav: index,
+			historical: null
 		}, () => {
+			this.fetchHistorical();
 			localStorage.setItem('cryptodash', JSON.stringify({
 				coinsList: this.state.coinsList,
 				favouriteCoins: this.state.favouriteCoins,
@@ -234,7 +239,9 @@ export class Provider extends Component {
 	componentDidMount(){
 		this.fetchCoins();
 		this.fetchPrices();
-		this.fetchHistorical();
+		if(this.state.pricesList){
+			this.fetchHistorical();
+		}
 	}
 
 	render(){

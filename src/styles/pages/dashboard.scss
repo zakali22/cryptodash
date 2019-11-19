@@ -26,6 +26,15 @@
 				margin-right: 0			
 			}
 		}
+		.chart-loader {
+			position: relative;
+			.css-1ol6pu0 {
+				position: absolute !important;
+				top: 50% ;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
 	}
 	&__spotlight-coin {
 		display: flex;

@@ -8,6 +8,9 @@ export default function(historical){
 	            text: 'Prices'
 	        }
 	    },
+	    xAxis: {
+	    	type:'datetime'
+	    },
 	    legend: {
 	        layout: 'vertical',
 	        align: 'right',

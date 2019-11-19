@@ -20,7 +20,7 @@ const customStyling = {
 const SpotlightGrid = () => {
 	return (
 		<Context.Consumer>
-		{(({getCurrentFavCoinDetails}) => {
+		{(({getCurrentFavCoinDetails, historical}) => {
 			let coinSpotlight = getCurrentFavCoinDetails();
 			{return coinSpotlight ? 
 				(
@@ -29,7 +29,13 @@ const SpotlightGrid = () => {
 							<p>{coinSpotlight.Name}</p>
 							<CoinImage image={coinSpotlight.ImageUrl} symbol={coinSpotlight.Symbol} customStyling={customStyling} />
 						</div>
-						<Chart />
+						{historical ? 
+							<Chart /> : (
+							<div className="chart-loader">	
+								<BounceLoader loading={true} size={70} color={'#123abc'} />
+							</div>
+							)
+						}
 					</div>
 				)
 				: <BounceLoader loading={true} size={70} color={'#123abc'} css={override} />}
