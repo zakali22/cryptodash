@@ -5,9 +5,9 @@ import CoinPrice from "./CoinPrice"
 const PriceGrid = () => {
 	return (
 		<Context.Consumer>
-			{(({pricesList, currentFav, updateCurrentFav}) => {
+			{(({pricesList, currentFav, updateCurrentFav, isLight}) => {
 				return (
-					<div className="coins__coinsgrid price-grid">
+					<div className="coins__coinsgrid price-grid" >
 						{pricesList.map((coin, index) => {
 				 			return (
 				 				<CoinPrice 
@@ -16,6 +16,7 @@ const PriceGrid = () => {
 									coin={coin} 
 									updateCurrentFav={updateCurrentFav}
 									currentFav={index === currentFav}
+									isLight={isLight}
 								/>
 							)
 					 	})

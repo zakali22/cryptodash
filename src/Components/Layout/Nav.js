@@ -10,6 +10,7 @@ const NavButton = styled.p`
 `;
 
 
+
 const NavElement = (props) => {
 	return (
 		<Context.Consumer>
@@ -32,6 +33,17 @@ const Nav = () => {
 			<h1 className="page-layout__nav--logo"><a href="#">CryptoDash</a></h1>
 			<NavElement name="Settings"/>
 			<NavElement name="Dashboard"/>
+			<Context.Consumer>
+			{(({changeTheme}) => {
+					return (
+						<select defaultValue="dark" onChange={e => changeTheme(e.target.value)}>
+							<option value="dark">Dark</option>
+							<option value="light">Light</option>
+						</select>
+					)
+				}
+			)}
+			</Context.Consumer>
 		</nav>
 	)
 }

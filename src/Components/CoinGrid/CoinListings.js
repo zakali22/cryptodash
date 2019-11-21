@@ -9,7 +9,7 @@ const renderLimitedList = (coinslist, type, favouriteCoins, filteredCoins) => {
 const CoinsListing = ({type}) => {
 	return (
 		<Context.Consumer>
-		{(({coinsList, favouriteCoins, addFavourites, removeFavourites, isInFavourites, filteredCoins}) => {
+		{(({coinsList, favouriteCoins, addFavourites, removeFavourites, isInFavourites, filteredCoins, isLight}) => {
 				return (
 					<div className="coins__coinsgrid">
 						{ renderLimitedList(coinsList, type, favouriteCoins, filteredCoins).map(coin => {
@@ -19,7 +19,8 @@ const CoinsListing = ({type}) => {
 										type={type ? type : false} 
 										addFavourites={addFavourites} 
 										removeFavourites={removeFavourites}  
-										isInFavourites={isInFavourites}/>
+										isInFavourites={isInFavourites}
+										isLight={isLight}/>
 						})}
 					</div>
 				)

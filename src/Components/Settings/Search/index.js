@@ -1,6 +1,7 @@
 import React from 'react'
 import {Context} from "../../Provider"
 import _ from 'lodash'
+import lightTheme from "../../lightTheme"
 
 const filteredCoinsList = (value, coinsList, setFilteredCoins) => {
 	// Get all the coin symbols
@@ -28,13 +29,17 @@ const onChangeHandler = (e, coinsList, setFilteredCoins) => {
 const Search = () => {
 	return (
 		<Context.Consumer>
-		{({coinsList, setFilteredCoins}) => {
+		{({coinsList, setFilteredCoins, isLight}) => {
 			console.log(coinsList)
+			let style = {
+				...lightTheme(isLight),
+				color: '#061a44'
+			}
 			return (
 				<div className="settings__search">
 					<label>
 						Search for a coin
-						<input type="text" name="coin__input" placeholder="Search coin" onChange={e => onChangeHandler(e, coinsList, setFilteredCoins)} />
+						<input type="text" name="coin__input" placeholder="Search coin" onChange={e => onChangeHandler(e, coinsList, setFilteredCoins)} style={style}/>
 					</label>
 				</div>
 				)

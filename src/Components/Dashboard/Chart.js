@@ -3,16 +3,17 @@ import {Context} from "../Provider"
 import highchartconfig from "../HighCharts/HighchartsConfig"
 import ReactHighCharts from "react-highcharts"
 import HighchartTheme from "../HighCharts/HighchartTheme"
+import lightTheme from "../lightTheme"
 
-ReactHighCharts.Highcharts.setOptions(HighchartTheme)
 
-const Chart = () => {
+const Chart = ({isLight}) => {
+	ReactHighCharts.Highcharts.setOptions(HighchartTheme(isLight))
+	
 	return (
 		<Context.Consumer>
 			{({historical, changeTimeInterval}) => {
-				console.log(historical)
 				return (
-					<div className="dashboard__chart">
+					<div className="dashboard__chart" style={lightTheme(isLight)}>
 						<select defaultValue="months" onChange={e => changeTimeInterval(e.target.value)}>
 							<option value="days">Days</option>
 							<option value="weeks">Weeks</option>

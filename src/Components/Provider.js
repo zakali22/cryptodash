@@ -29,6 +29,7 @@ export class Provider extends Component {
 			updateCurrentFav: this.updateCurrentFav,
 			getCurrentFavCoinDetails: this.getCurrentFavCoinDetails,
 			changeTimeInterval: this.changeTimeInterval,
+			changeTheme: this.changeTheme,
 			...this.initialLoad(),
 		}
 	}
@@ -36,6 +37,20 @@ export class Provider extends Component {
 	setPage = (page) => {
 		this.setState({
 			page
+		})
+	}
+
+	changeTheme = (theme) => {
+		this.setState({
+			isLight: theme === 'light' ? true : false
+		}, () => {
+			if(theme === 'light'){
+				document.body.style.background = '#e1eaee';
+				document.body.style.color = '#061a44'
+			} else {
+				document.body.style.background = '#010e2c';
+				document.body.style.color = 'white'
+			}
 		})
 	}
 
