@@ -1,0 +1,22 @@
+.settings {
+	&__button {
+		color: $lightGreenColor;
+		border-color: $lightGreenColor;
+		text-shadow: 0px 0px 20px $lightGreenColor;
+		margin-top: 2rem;
+		justify-self: center;
+	}
+	&__search {
+		margin-top: 4rem;
+		label {
+			display: grid;
+			grid-template-columns: minmax(100px, max-content) minmax(200px, .5fr);
+			column-gap: 5rem;
+			align-items: center;
+			
+			input {
+				justify-self: stretch;
+			}
+		}
+	}
+}

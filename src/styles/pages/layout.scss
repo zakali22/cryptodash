@@ -1,0 +1,18 @@
+.page {
+	&-layout {
+		padding: 5rem;
+		display: grid;
+		&__nav {
+			display: flex;
+			align-items: center;
+			margin-bottom: 5rem;
+			font-size: 7rem;
+			&--logo {
+				margin-right: auto;
+			}
+			& > *:not(&--logo){ 
+				margin-left: 2rem;
+			}
+		}
+	}
+}
