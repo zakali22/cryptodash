@@ -47,12 +47,13 @@
 	}	
 	&__chart {
 		position: relative;
-    	&--inner {
-    		position: absolute;
-    		top: 0;
-    		left: 0;
-    		width: 100%; 
-    		height: 100%;
+    	select {
+    		background: $tileGridItemColor;
+    		padding: 1rem;
+    		border: 1px solid;
+    		color: white;
+    		margin: 0 0 2rem;
+    		float: right;
     	}
 	}
 }

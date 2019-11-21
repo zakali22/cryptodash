@@ -25,8 +25,10 @@ export class Provider extends Component {
 			filteredCoins: null,
 			setFilteredCoins: this.setFilteredCoins,
 			pricesList: null,
+			timeInterval: 'months',
 			updateCurrentFav: this.updateCurrentFav,
 			getCurrentFavCoinDetails: this.getCurrentFavCoinDetails,
+			changeTimeInterval: this.changeTimeInterval,
 			...this.initialLoad(),
 		}
 	}
@@ -177,7 +179,7 @@ export class Provider extends Component {
 		let histSeries = [{
 			name: this.getCurrentFavCoinDetails().Name,
 			data: result.map((ticker, index) => [
-				moment().subtract({months: TIMEUNIT-index}).valueOf(),
+				moment().subtract({[this.state.timeInterval]: TIMEUNIT-index}).valueOf(),
 				ticker.USD
 			])
 		}]
@@ -195,7 +197,7 @@ export class Provider extends Component {
 		let promises = [];
 		let currSymbol = this.getCurrentFavCoinDetails().Symbol;
 		for(let i=TIMEUNIT; i>0; i--){
-			let data = crypto.priceHistorical(currSymbol, ['USD'], moment().subtract({months: i}).toDate())
+			let data = crypto.priceHistorical(currSymbol, ['USD'], moment().subtract({[this.state.timeInterval]: i}).toDate())
 			promises.push(data)
 		}
 
@@ -232,6 +234,16 @@ export class Provider extends Component {
 	setFilteredCoins = (filteredCoins) => {
 		this.setState({
 			filteredCoins
+		})
+	}
+
+	changeTimeInterval = (value) => {
+		console.log(value)
+		this.setState({
+			timeInterval: value,
+			historical: null
+		}, () => {
+			this.fetchHistorical()
 		})
 	}
 

@@ -9,9 +9,18 @@ ReactHighCharts.Highcharts.setOptions(HighchartTheme)
 const Chart = () => {
 	return (
 		<Context.Consumer>
-			{({historical}) => {
+			{({historical, changeTimeInterval}) => {
 				console.log(historical)
-				return <ReactHighCharts config={highchartconfig(historical)}/>
+				return (
+					<div className="dashboard__chart">
+						<select defaultValue="months" onChange={e => changeTimeInterval(e.target.value)}>
+							<option value="days">Days</option>
+							<option value="weeks">Weeks</option>
+							<option value="months">Months</option>
+						</select>
+						<ReactHighCharts config={highchartconfig(historical)}/>
+					</div>
+				)
 
 			}}
 		</Context.Consumer>
