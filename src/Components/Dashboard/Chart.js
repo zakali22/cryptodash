@@ -11,7 +11,7 @@ const Chart = ({isLight}) => {
 	
 	return (
 		<Context.Consumer>
-			{({historical, changeTimeInterval}) => {
+			{({historical, changeTimeInterval, timeInterval}) => {
 				return (
 					<div className="dashboard__chart" style={lightTheme(isLight)}>
 						<select defaultValue="months" onChange={e => changeTimeInterval(e.target.value)}>

@@ -30,7 +30,7 @@ const NavElement = (props) => {
 const Nav = () => {
 	return (
 		<nav className="page-layout__nav">
-			<h1 className="page-layout__nav--logo"><a href="#">CryptoDash</a></h1>
+			<h1 className="page-layout__nav--logo"><a href="#">Demo Cryptocurrency</a></h1>
 			<NavElement name="Settings"/>
 			<NavElement name="Dashboard"/>
 			<Context.Consumer>

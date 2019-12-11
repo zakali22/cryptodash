@@ -6,7 +6,7 @@ const WelcomeMessage = () => {
 		<Context.Consumer>
 		{(({firstVisit, favouriteCoins}) => {
 				{ return firstVisit || !favouriteCoins.length ? 
-					<h1 className="sub-heading">Welcome to Cryptodash. Please choose your favourite cryptocurrency</h1> : null
+					<h1 className="sub-heading">Welcome. Please choose your favourite cryptocurrency</h1> : null
 				}
 			}
 		)}
