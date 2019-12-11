@@ -212,7 +212,7 @@ export class Provider extends Component {
 		let promises = [];
 		let currSymbol = this.getCurrentFavCoinDetails().Symbol;
 		for(let i=TIMEUNIT; i>0; i--){
-			let data = crypto.priceHistorical(currSymbol, ['USD'], moment().subtract({[this.state.timeInterval]: i}).toDate())
+			let data = crypto.priceHistorical(currSymbol, ['USD'], moment().subtract({[this.state.timeInterval]: i++}).toDate())
 			promises.push(data)
 		}
 
